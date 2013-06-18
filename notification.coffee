@@ -12,10 +12,12 @@ server.listen(3000)
 EventEmitter = require('events').EventEmitter
 events = new EventEmitter
 
-r='redis://redistogo:caa5bac2d98f856a8656f7f2d4b6e8c1@dory.redistogo.com:10829/'
-rtg   = require("url").parse(r)
-redis = require("redis").createClient(rtg.port, rtg.hostname)
-redis.auth(rtg.auth.split(":")[1])
+if (process.env.REDISTOGO_URL)
+  rtg   = require("url").parse(process.env.REDISTOGO_URL)
+  redis = require("redis").createClient(rtg.port, rtg.hostname)
+  redis.auth(rtg.auth.split(":")[1])
+else
+  redis = require("redis").createClient()
 
 
 # We should add removeListener before newListener
