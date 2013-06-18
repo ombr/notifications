@@ -7,6 +7,10 @@ app.use(express.static(__dirname + '/public'))
 
 server = require('http').createServer(app)
 io = io.listen(server, {log: false})
+io.configure(()->
+  io.set("transports", ["xhr-polling"])
+  io.set("polling duration", 10)
+)
 server.listen(process.env.PORT || 5000)
 
 EventEmitter = require('events').EventEmitter
