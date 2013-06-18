@@ -7,7 +7,7 @@ app.use(express.static(__dirname + '/public'))
 
 server = require('http').createServer(app)
 io = io.listen(server, {log: false})
-server.listen(3000)
+server.listen(process.env.PORT || 5000)
 
 EventEmitter = require('events').EventEmitter
 events = new EventEmitter
