@@ -14,11 +14,16 @@
     "socket.io": "~0.9.11",
     "express": "~3.0.4",
     "coffee-script": "~1.4.0",
-    "http": "0.0.0"
+    "pg": "~0.7.2",
+    "redis": "~0.8.3",
+    "chai": "~1.6.1",
+    "sinon": "~1.7.2",
+    "mocha": "~1.11.0"
   },
   "devDependencies": {},
   "optionalDependencies": {},
   "engines": {
-    "node": "*"
+    "node": "0.10.x",
+    "npm":  "1.2.x"
   }
 }

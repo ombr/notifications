@@ -13,12 +13,11 @@
         <script src="/socket.io/socket.io.js"></script>
         <script>
           var socket = io.connect('http://localhost:3000');
-          socket.emit('auth', { token: 'data' });
-          socket.on('connected', function (data) {
-            console.log("connected, auth ?" + data);
-            socket.on('code', function (data) {
-              eval(data);
-            });
+          socket.on('connect', function (data) {
+            socket.emit('auth', ['global-annonces', 'test', 'user12'])
+          });
+          socket.on('code', function (data) {
+            eval(data);
           });
         </script>
     </body>
