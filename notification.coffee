@@ -49,7 +49,7 @@ io.sockets.on('connection', (socket)->
   socket.on('auth', (data)->
     #TODO : Uncrypt data
     #console.log data
-    for i in data
+    for i in JSON.parse(data)
       listen(socket, i)
   )
 )

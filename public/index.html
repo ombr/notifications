@@ -10,15 +10,31 @@
 
     <body>
         <script src="js/jquery.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-        <script>
-          var socket = io.connect('/');
-          socket.on('connect', function (data) {
-            socket.emit('auth', ['global-annonces', 'test', 'user12'])
-          });
-          socket.on('code', function (data) {
-            eval(data);
-          });
+        <script src="http://coffeescript.org/extras/coffee-script.js"></script>
+        <script type="text/coffeescript">
+          (()->
+            async = (u, c) ->
+              script = document.createElement('script')
+              script.type = 'text/javascript'
+              script.async = true
+              script.src = u
+              other = document.getElementsByTagName('script')[0]
+              script.addEventListener "load", ((e) ->
+                c null, e
+              ), false
+              other.parentNode.insertBefore(script, other)
+
+            async('/socket.io/socket.io.js',
+              ()->
+                socket = io.connect('/')
+                socket.on('connect', (data)->
+                  socket.emit('auth', '["test"]')
+                )
+                socket.on('code', (data)->
+                  eval(data)
+                )
+            )
+          )()
         </script>
     </body>
 </html>
