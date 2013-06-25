@@ -45,12 +45,19 @@ listen = (socket, channel)->
   socket.on('disconnect', ()->
     events.removeListener(channel, callback)
   )
+
+
+auth = require('./lib/auth').auth
+
 io.sockets.on('connection', (socket)->
   socket.on('auth', (data)->
-    #TODO : Uncrypt data
-    #console.log data
-    for i in JSON.parse(data)
-      listen(socket, i)
+    console.log "AUTH !"
+    console.log data.token
+    console.log data.iv
+    console.log process.env.SECRET
+    auth(data.token, data.iv, process.env.SECRET, (channel)->
+      listen(socket, channel)
+    )
   )
 )
 
@@ -68,8 +75,9 @@ redis.on("message", (channel, message)->
 
 #sleep 1
 
-redis2 = require("redis").createClient(rtg.port, rtg.hostname)
-redis2.auth(rtg.auth.split(":")[1])
+#redis2 = require("redis").createClient(rtg.port, rtg.hostname)
+redis2 = require("redis").createClient()
+#redis2.auth(rtg.auth.split(":")[1])
 setInterval(()->
   redis2.publish('test', "$('body').append('Hello World ! lalala');")
 ,2000)
