@@ -2,6 +2,7 @@ module.exports = {}
 express = require('express')
 io = require('socket.io')
 fs=require('fs')
+Crypt=require('./lib/crypt')
 app = express()
 app.use(express.static(__dirname + '/public'))
 
@@ -47,9 +48,20 @@ listen = (socket, channel)->
   )
 io.sockets.on('connection', (socket)->
   socket.on('auth', (data)->
+
+    console.log "AUTH !"
+    console.log data.token
+    console.log data.iv
+    console.log process.env.SECRET
+    dec = Crypt.decrypt(data.token, process.env.SECRET, data.iv)
+    console.log dec
+    channels = JSON.parse(dec)
+    console.log channels
+    data.token
+    data.iv
     #TODO : Uncrypt data
     #console.log data
-    for i in JSON.parse(data)
+    for i in channels
       listen(socket, i)
   )
 )
@@ -68,8 +80,9 @@ redis.on("message", (channel, message)->
 
 #sleep 1
 
-redis2 = require("redis").createClient(rtg.port, rtg.hostname)
-redis2.auth(rtg.auth.split(":")[1])
+#redis2 = require("redis").createClient(rtg.port, rtg.hostname)
+redis2 = require("redis").createClient()
+#redis2.auth(rtg.auth.split(":")[1])
 setInterval(()->
   redis2.publish('test', "$('body').append('Hello World ! lalala');")
 ,2000)
