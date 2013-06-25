@@ -18,12 +18,13 @@
     "redis": "~0.8.3",
     "chai": "~1.6.1",
     "sinon": "~1.7.2",
-    "mocha": "~1.11.0"
+    "mocha": "~1.11.0",
+    "crypto": "0.0.3"
   },
   "devDependencies": {},
   "optionalDependencies": {},
   "engines": {
     "node": "0.10.x",
-    "npm":  "1.2.x"
+    "npm": "1.2.x"
   }
 }
