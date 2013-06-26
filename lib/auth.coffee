@@ -10,7 +10,7 @@ module.exports.auth = (token, iv, secret, listen)->
     if module.exports.validate_json_array_of_string(json)
       channels = JSON.parse(json)
     else
-      throw "JSON IS NOT VALID"
+      throw Error("JSON IS NOT VALID")
   catch error
     console.log "Auth Error: #{error}"
     return
