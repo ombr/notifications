@@ -45,31 +45,19 @@ listen = (socket, channel)->
   socket.on('disconnect', ()->
     events.removeListener(channel, callback)
   )
+
+
+auth = require('./lib/auth').auth
+
 io.sockets.on('connection', (socket)->
   socket.on('auth', (data)->
-    #TODO : Uncrypt data
-    #console.log data
-    for i in JSON.parse(data)
-      listen(socket, i)
+    auth(data.token, data.iv, process.env.SECRET, (channel)->
+      listen(socket, channel)
+    )
   )
 )
-
 
 redis.on("message", (channel, message)->
   #console.log("client1 channel " + channel + ": " + message)
   events.emit(channel, message)
 )
-
-
-
-
-
-
-
-#sleep 1
-
-redis2 = require("redis").createClient(rtg.port, rtg.hostname)
-redis2.auth(rtg.auth.split(":")[1])
-setInterval(()->
-  redis2.publish('test', "$('body').append('Hello World ! lalala');")
-,2000)

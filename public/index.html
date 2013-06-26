@@ -2,39 +2,13 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Ombr's blog</title>
+        <title>Poussette</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="Luc Boissaye">
     </head>
 
     <body>
-        <script src="js/jquery.js"></script>
-        <script src="http://coffeescript.org/extras/coffee-script.js"></script>
-        <script type="text/coffeescript">
-          (()->
-            async = (u, c) ->
-              script = document.createElement('script')
-              script.type = 'text/javascript'
-              script.async = true
-              script.src = u
-              other = document.getElementsByTagName('script')[0]
-              script.addEventListener "load", ((e) ->
-                c null, e
-              ), false
-              other.parentNode.insertBefore(script, other)
-
-            async('/socket.io/socket.io.js',
-              ()->
-                socket = io.connect('/')
-                socket.on('connect', (data)->
-                  socket.emit('auth', '["test"]')
-                )
-                socket.on('code', (data)->
-                  eval(data)
-                )
-            )
-          )()
-        </script>
+      Poussette.
     </body>
 </html>
