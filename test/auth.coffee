@@ -45,6 +45,8 @@ describe('Auth', ()->
       assert.equal(validate('["test","laASDFADSf12123"]'), true)
       assert.equal(validate('[ "tsad43t", "laaSDFSDF23234lala" ]'), true)
       assert.equal(validate('[ "test1123" , "lalaFFFla" ]'), true)
+      assert.equal(validate('[ "test03" , "lalaFFFla" ]'), true)
+      assert.equal(validate('[ "test03" , "lal0aFFFla" ]'), true)
     )
 
     it('does not accept special chars', ()->

@@ -1,7 +1,7 @@
 module.exports = {}
 Crypt=require('./crypt')
 module.exports.validate_json_array_of_string = (json)->
-  json.match(/^\[[ ]*"[a-z1-9]+"[ ]*(,[ ]*"[a-z1-9]*"[ ]*)*\]$/ig) != null
+  json.match(/^\[[ ]*"[a-z0-9]+"[ ]*(,[ ]*"[a-z0-9]*"[ ]*)*\]$/ig) != null
 
 
 module.exports.auth = (token, iv, secret, listen)->
