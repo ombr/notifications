@@ -8,11 +8,9 @@ describe('Auth', ()->
       validate = require('../lib/auth').validate_json_array_of_string
       assert.equal(validate('[]'), false)
     )
-    describe('#validate_json_array_of_string', ()->
-      it('accept single item', ()->
-        validate = require('../lib/auth').validate_json_array_of_string
-        assert.equal(validate('["test"]'), true)
-      )
+    it('accept single item', ()->
+      validate = require('../lib/auth').validate_json_array_of_string
+      assert.equal(validate('["test"]'), true)
     )
     it('does not accept trailling space', ()->
       validate = require('../lib/auth').validate_json_array_of_string
@@ -22,7 +20,7 @@ describe('Auth', ()->
       assert.equal(validate('["test"]  '), false)
     )
 
-    it('does not accept trailling space', ()->
+    it('accept trailling space inside []', ()->
       validate = require('../lib/auth').validate_json_array_of_string
       assert.equal(validate('[ "test"]'), true)
       assert.equal(validate('[  "test"]'), true)

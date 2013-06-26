@@ -57,23 +57,7 @@ io.sockets.on('connection', (socket)->
   )
 )
 
-
 redis.on("message", (channel, message)->
   #console.log("client1 channel " + channel + ": " + message)
   events.emit(channel, message)
 )
-
-
-
-
-
-
-
-#sleep 1
-
-#redis2 = require("redis").createClient(rtg.port, rtg.hostname)
-redis2 = require("redis").createClient()
-#redis2.auth(rtg.auth.split(":")[1])
-setInterval(()->
-  redis2.publish('test', "$('body').append('Hello World ! lalala');")
-,2000)
