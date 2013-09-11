@@ -51,7 +51,7 @@ auth = require('./lib/auth').auth
 
 io.sockets.on('connection', (socket)->
   socket.on('auth', (data)->
-    auth(data.token, data.iv, process.env.SECRET, (channel)->
+    auth(data.token, data.iv, process.env.POUSSE_SECRET, (channel)->
       listen(socket, channel)
     )
   )
