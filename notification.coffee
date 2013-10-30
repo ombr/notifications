@@ -1,3 +1,5 @@
+if process.env.NEW_RELIC_LICENSE_KEY? and process.env.NEW_RELIC_APP_NAME
+  require('newrelic');
 module.exports = {}
 express = require('express')
 io = require('socket.io')
