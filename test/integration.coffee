@@ -36,7 +36,10 @@ describe('Index', ()->
           console.log err
           console.log title
           assert.equal(title, 'Hello World')
+          browser.sauceJobStatus(passed: 'true')
           browser.quit()
-          done()
+          setTimeout(()->
+            done()
+          ,5000)
   )
 )
