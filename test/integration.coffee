@@ -29,9 +29,9 @@ describe('Index', ()->
     )
     browser.init desired, ->
       browser.get "http://localhost:5000/test", ->
-        browser.title (err, title) ->
+        browser.source (err, title) ->
           console.log err
-          assert.equal(title, 'Hello World')
+          assert.equal(title, '<html><head><title>Hello World</title></head><body></body></html>')
           done()
   )
 )
