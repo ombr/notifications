@@ -11,19 +11,22 @@ browser.on "command", (meth, path) ->
   console.log " > \u001b[33m%s\u001b[0m: %s", meth, path
 
 desired =
-  browserName: 'chrome'
+  browserName: process.env.BROWSER
   version: ""
-  platform: "Linux"
+  platform: "Windows 7"
   tags: ['test']
-  name: "Test : #{process.env.TRAVIS_JOB_NUMBER}"
-desired["tunnel-identifier"] = process.env.TRAVIS_JOB_NUMBER
+  name: "Test local"
+if process.env.TRAVIS_JOB_NUMBER
+  desired.tags.push('travis')
+  desired['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER
+  desired['name'] = "Travis: #{process.env.TRAVIS_JOB_NUMBER}"
+  desired['build'] = process.env.TRAVIS_JOB_NUMBER
 
 describe('Index', ()->
   it('test?', (done)->
     this.timeout(120000)
 
     poussette = require '../notification'
-    console.log browser
     poussette.app.get('/test', (req, res)->
       res.send('<html><head><title>Hello World</title></head><body></body></html>')
     )
@@ -31,6 +34,7 @@ describe('Index', ()->
       browser.get "http://localhost:5000/test", ->
         browser.source (err, title) ->
           console.log err
+          console.log title
           assert.equal(title, '<html><head><title>Hello World</title></head><body></body></html>')
           done()
   )
