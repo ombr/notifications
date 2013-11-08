@@ -19,7 +19,7 @@
     "chai": "~1.6.1",
     "sinon": "~1.7.2",
     "mocha": "~1.11.0",
-    "crypto": "0.0.3",
+    "crypto": "0.0.3"
   },
   "devDependencies": {
     "wd": "~0.2.2"
