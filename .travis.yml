@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+- '0.10'
+services:
+- redis-server
+env:
+  matrix:
+  - BROWSER=multi
+  - BROWSER=chrome
+  - BROWSER=firefox
+  - BROWSER=explorer
+  global:
+  - secure: RJGvjTdxAOaEcWnUkwOmDeDaAAaXh9/lLLnuQ4hJ1px3J9jwQFoHFVVhZT8swx6wTzGcq+sO3JVE74eUD5qx5+cQFeXgzqLdh194KNvtHri8RDXkkhXunwgijVbN/rTo9lEbqLC0ZFKgrtYOawhynJ0NgJJ0ykCERtTy5Acee3M=
+  - secure: Z25RmjJhIDvstnXqg5a4mdFk5l0PvvYH+VqES4jVT+bBHG9crmt/hDUUzxhnGBdN1JB/hEPZ6tIV/tlk/enxx5dOOruCHvyyyRX4cYFmWS5C8RlxT8PoTCW4rihmZyRGJ2QzsQ/LlE0JE3LoPiKXKxHJ17vS7CqWYR8mk2lFbeI=
+  - secure: QHlX++ongtzDqlNkM6EOI/xeM1i6dq4l/udjQmn6/5xe9aGj5Z1iH19cKqO+Qi0y/glPlXS4XFicWxlr6oC0Ml0vZWrJ8wHKuc9dyvXdS9lVCx4BfyU420v+uxcXdK3QMgmItTMDhrw/5mumwb+8/rcVEP4arxpM4LCi++ffpD8=
+before_script:
+- curl https://gist.github.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash
+script:
+- ./node_modules/mocha/bin/mocha --compilers coffee:coffee-script  test

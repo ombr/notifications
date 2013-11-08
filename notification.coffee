@@ -3,6 +3,7 @@ express = require('express')
 io = require('socket.io')
 fs=require('fs')
 app = express()
+module.exports.app = app
 app.use(express.static(__dirname + '/public'))
 
 server = require('http').createServer(app)
