@@ -20,7 +20,7 @@ if process.env.TRAVIS_JOB_NUMBER
   desired.tags.push('travis')
   desired['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER
   desired['name'] = "Travis: #{process.env.TRAVIS_JOB_NUMBER}"
-  desired['build'] = process.env.TRAVIS_JOB_NUMBER
+  desired['build'] = parseInt(process.env.TRAVIS_JOB_NUMBER)
 
 describe('Index', ()->
   it('test?', (done)->
