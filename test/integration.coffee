@@ -16,7 +16,7 @@ desired =
   platform: "Linux"
   tags: ['test']
   name: "Test : #{process.env.TRAVIS_JOB_NUMBER}"
-#desired["tunnel-identifier"] = process.env.TRAVIS_JOB_NUMBER
+desired["tunnel-identifier"] = process.env.TRAVIS_JOB_NUMBER
 
 describe('Index', ()->
   it('test?', (done)->
