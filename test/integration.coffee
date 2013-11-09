@@ -12,8 +12,8 @@ browser.on "command", (meth, path) ->
 
 desired =
   browserName: process.env.BROWSER
-  version: ""
-  platform: "Windows 7"
+  version: process.env.BROWSER_VERSION || ""
+  platform: process.env.BROWSER_PLATFORM || 'Windows 7'
   tags: ['test']
   name: "Test local"
 if process.env.TRAVIS_JOB_NUMBER
@@ -38,7 +38,9 @@ describe('Index', ()->
           assert.equal(title, 'Hello World')
           browser.sauceJobStatus(passed: 'true', ()->
             browser.quit(()->
-              done()
+              setTimeout(()->
+                done()
+              , 5000)
             )
           )
   )

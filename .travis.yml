@@ -8,8 +8,13 @@ env:
   - BROWSER=opera
   - BROWSER=chrome
   - BROWSER=firefox
-  - BROWSER=safari
-  - BROWSER="internet explorer"
+  - BROWSER=safari BROWSER_PLATFORM="OS X 10.6"
+  - BROWSER="internet explorer" BROWSER_VERSION="6" BROWSER_PLATFORM="Windows XP"
+  - BROWSER="internet explorer" BROWSER_VERSION="7" BROWSER_PLATFORM="Windows XP"
+  - BROWSER="internet explorer" BROWSER_VERSION="8" BROWSER_PLATFORM="Windows XP"
+  - BROWSER="internet explorer" BROWSER_VERSION="9"
+  - BROWSER="internet explorer" BROWSER_VERSION="10"
+  - BROWSER="internet explorer" BROWSER_VERSION="11" BROWSER_PLATFORM="Windows 8.1"
   global:
   - secure: RJGvjTdxAOaEcWnUkwOmDeDaAAaXh9/lLLnuQ4hJ1px3J9jwQFoHFVVhZT8swx6wTzGcq+sO3JVE74eUD5qx5+cQFeXgzqLdh194KNvtHri8RDXkkhXunwgijVbN/rTo9lEbqLC0ZFKgrtYOawhynJ0NgJJ0ykCERtTy5Acee3M=
   - secure: Z25RmjJhIDvstnXqg5a4mdFk5l0PvvYH+VqES4jVT+bBHG9crmt/hDUUzxhnGBdN1JB/hEPZ6tIV/tlk/enxx5dOOruCHvyyyRX4cYFmWS5C8RlxT8PoTCW4rihmZyRGJ2QzsQ/LlE0JE3LoPiKXKxHJ17vS7CqWYR8mk2lFbeI=
